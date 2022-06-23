@@ -1,12 +1,9 @@
 import type { NextPage } from "next";
 import styles from "../styles/Home.module.css";
+import { useTheme } from "next-themes";
 
 const Home: NextPage = () => {
-  return (
-    <div>
-      <h1 className="text-red-400">hey</h1>
-    </div>
-  );
+  return <div className=""></div>;
 };
 
 export default Home;
