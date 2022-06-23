@@ -1,3 +1,17 @@
+@import url("http://fonts.cdnfonts.com/css/gotham-rounded");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.Gotham {
+  font-family: "Gotham Rounded", sans-serif;
+}
+
+* {
+  @apply Gotham;
+}
+
+#__next {
+  @apply bg-gradient-to-br from-pink via-soft-pink to-pinky-gray h-screen flex flex-col justify-center items-center;
+}
