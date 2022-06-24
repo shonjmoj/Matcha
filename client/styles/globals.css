@@ -9,9 +9,5 @@
 }
 
 * {
-  @apply Gotham;
-}
-
-#__next {
-  @apply bg-gradient-to-br from-pink via-soft-pink to-pinky-gray h-screen flex flex-col justify-center items-center;
+  @apply Gotham p-0 m-0;
 }
