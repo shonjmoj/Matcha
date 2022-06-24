@@ -9,6 +9,8 @@ const ProfileSchema = new mongoose.Schema(
     sex_pref: String,
     interests: [{ type: String }],
     bio: String,
+    profile_picture: String,
+    pictures: [{ type: String }],
   },
   { collection: "user_profile" }
 );

@@ -7,10 +7,22 @@ const UserSchema = new mongoose.Schema(
     userName: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    isVerified: { type: Boolean, default: false },
     createdAt: { type: Date, default: Date.now },
   },
   { collection: "users" }
 );
 
+const TokenSchema = new mongoose.Schema({
+  _userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "UserSchema",
+  },
+  token: { type: String, required: true },
+  expireAt: { type: Date, default: Date.now, index: { expires: 86400000 } },
+});
+
 const userModel = mongoose.model("UserSchema", UserSchema);
-module.exports = userModel;
+const tokenModel = mongoose.model("TokenModel", TokenSchema);
+module.exports = { userModel, tokenModel };
