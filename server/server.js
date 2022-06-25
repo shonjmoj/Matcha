@@ -2,11 +2,13 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
-const { register, login } = require("./utils");
 require("dotenv").config();
-
+const { register, login } = require("./controllers/UserController");
+const {
+  confirmEmail,
+  resendConfirmation,
+} = require("./controllers/confirmEmailController");
 const PORT = process.env.PORT || 3002;
-
 app.use(cors());
 app.use(express.json());
 mongoose.connect(process.env.URI, {
@@ -16,6 +18,8 @@ mongoose.connect(process.env.URI, {
 
 app.post("/api/register", register);
 app.post("/api/login", login);
+app.get("/confirmation/:email/:token", confirmEmail);
+app.post("/api/resendconfirmation", resendConfirmation);
 app.listen(PORT, () => {
   console.log(`listening to port ${PORT}`);
 });
