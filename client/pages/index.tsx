@@ -3,10 +3,12 @@ import styles from '../styles/Home.module.css';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Mode from '../components/Mode';
+import Love from '../components/Love';
 
 const Home: NextPage = () => {
 	return (
 		<motion.div className='flex flex-col items-center w-full'>
+			<Love />
 			<motion.h1
 				initial={{ opacity: 0, scale: 0.5 }}
 				animate={{ opacity: 1, scale: 1.1 }}
