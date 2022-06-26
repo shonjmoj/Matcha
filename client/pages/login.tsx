@@ -13,22 +13,22 @@ export default function Login() {
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
 				transition={{ delay: 1.5 }}
-				className='text-2xl lg:text-4xl text-center mb-8 lg:mb-12 font-semibold'>
+				className='text-2xl xl:text-4xl text-center mb-8 xl:mb-12 font-semibold'>
 				It is never too late <br /> to fall in love
 			</motion.h1>
 			<form className='flex flex-col gap-2 items-center'>
-				<label className='flex flex-col'>
+				<label className='flex flex-col font-semibold'>
 					Username / email
 					<input
 						type='text'
-						className='bg-transparent border-white border-[1px] outline-none p-2'
+						className='bg-transparent border-white font-normal border-[1px] outline-none p-2'
 					/>
 				</label>
-				<label className='flex flex-col'>
+				<label className='flex flex-col font-semibold'>
 					Password
 					<input
 						type='password'
-						className='bg-transparent border-white border-[1px] outline-none p-2'
+						className='bg-transparent border-white font-normal border-[1px] outline-none p-2'
 					/>
 				</label>
 				<span className='text-sm lg:text-md font-light'>
