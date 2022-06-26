@@ -1,12 +1,13 @@
+import { motion } from 'framer-motion';
+
 const Love = () => {
 	return (
-		<div className=''>
-			<svg
-				width='447'
-				height='279'
-				viewBox='0 0 747 579'
-				fill='none'
-				xmlns='http://www.w3.org/2000/svg'>
+		<motion.div
+			className='w-48 h-48'
+			initial={{ opacity: 0.1, x: -400 }}
+			animate={{ opacity: 1, x: 0 }}
+			transition={{ delay: 0.8, type: 'tween', duration: 4 }}>
+			<svg viewBox='0 0 747 579' fill='none' xmlns='http://www.w3.org/2000/svg'>
 				<path
 					opacity='0.25'
 					d='M587.204 331.314C584.826 329.615 584.304 329.446 584.234 327.408C584.163 325.37 585.506 260.383 585.506 260.383'
@@ -1991,7 +1992,7 @@ const Love = () => {
 					fill='#F06082'
 				/>
 			</svg>
-		</div>
+		</motion.div>
 	);
 };
 export default Love;

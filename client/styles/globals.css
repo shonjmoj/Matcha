@@ -12,5 +12,5 @@
 }
 
 #__next {
-    @apply bg-gradient-to-br from-pink via-pink to-soft-pink h-screen w-screen flex justify-center items-center
+    @apply bg-gradient-to-br from-pink via-soft-pink to-pink h-screen w-screen flex justify-center items-center
 }

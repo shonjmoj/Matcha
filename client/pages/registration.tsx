@@ -12,7 +12,7 @@ export default function registration() {
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
 				transition={{ delay: 1.5 }}
-				className='text-2xl lg:text-4xl text-center mb-8 lg:mb-12 font-semibold mx-4'>
+				className='text-2xl lg:text-4xl text-center mb-6 lg:mb-12 font-semibold mx-4'>
 				Get noticed for who you are, not what you look like.
 			</motion.h1>
 			<form className='grid lg:grid-cols-2 justify-center items-center gap-3'>
