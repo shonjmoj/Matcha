@@ -1,19 +1,10 @@
-import "../styles/globals.css";
-import type { AppProps } from "next/app";
-import { ThemeProvider } from "next-themes";
-import { motion } from "framer-motion";
-import { useTheme } from "next-themes";
-import Mode from "../components/Mode";
-import Layout from "../components/Layout";
+import '../styles/globals.css';
+import type { AppProps } from 'next/app';
+import { ThemeProvider } from 'next-themes';
+import { motion } from 'framer-motion';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return (
-    <Layout>
-      <ThemeProvider attribute="class">
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </Layout>
-  );
+	return <Component {...pageProps} />;
 }
 
 export default MyApp;

@@ -1,13 +1,16 @@
-@import url("http://fonts.cdnfonts.com/css/gotham-rounded");
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.Gotham {
-  font-family: "Gotham Rounded", sans-serif;
+.Poppins {
+    font-family: 'Poppins', sans-serif;
 }
 
 * {
-  @apply Gotham p-0 m-0;
+  @apply Poppins text-white;
+}
+
+#__next {
+    @apply bg-gradient-to-br from-pink via-pink to-soft-pink h-screen w-screen flex justify-center items-center
 }

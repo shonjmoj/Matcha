@@ -6,7 +6,10 @@ export default function Mode() {
   return (
     <button
       className="absolute top-10 right-10"
-      onClick={() => (theme === "light" ? setTheme("dark") : setTheme("light"))}
+      onClick={() => {
+          console.log(theme)
+          theme === 'light' ? setTheme('light') : setTheme('dark')
+      }}
     >
       Mode
     </button>
