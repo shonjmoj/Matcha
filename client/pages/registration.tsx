@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import Joi from 'joi';
+import { RegistrationData } from '../types/types';
 
 type Data = {
   firstname: String;
@@ -13,7 +14,7 @@ type Data = {
 };
 
 export default function Registration() {
-  const { register, handleSubmit } = useForm<Data>();
+  const { register, handleSubmit } = useForm<RegistrationData>();
   const schema = Joi.object({
     firstname: Joi.string().pattern(new RegExp('^[A-Z][a-z]{5,10}')).required(),
     lastname: Joi.string().pattern(new RegExp('^[A-Z][a-z]{5,10}')).required(),
@@ -22,7 +23,7 @@ export default function Registration() {
     password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
     repeat_password: Joi.ref('password'),
   });
-  const onSubmit: SubmitHandler<Data> = async (data) => {
+  const onSubmit: SubmitHandler<RegistrationData> = async (data) => {
     const { error, value } = schema.validate(data);
     if (!error) {
       const result = await fetch('http://localhost:3001/api/register', {
