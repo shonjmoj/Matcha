@@ -90,7 +90,7 @@ const login = async (req, res) => {
   const user = await userModel.findOne({ email }).lean();
 
   if (!user) {
-    return res.json({
+    return res.status(409).json({
       status: "error",
       error: "user doesn't exist",
     });
@@ -111,7 +111,7 @@ const login = async (req, res) => {
       message: "User successfully Logged In",
     });
   }
-  res.json({ status: "error", error: "invalid email / password" });
+  res.status(408).json({ status: "error", error: "invalid email / password" });
 };
 
 module.exports = { register, login };
