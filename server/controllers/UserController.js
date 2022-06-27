@@ -3,6 +3,7 @@ const { userModel, tokenModel } = require("../models/user");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
+require("dotenv").config();
 const register = async (req, res) => {
   const {
     username,
