@@ -5,11 +5,15 @@ import Joi from 'joi';
 import { RegistrationData } from '../types/types';
 import Router from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
-import { RegistrationState } from './redux/RegistrationState';
-import { AnyAction, Reducer } from '@reduxjs/toolkit';
+import { RootState } from './redux/store';
+import {
+  alreadyInUse,
+  successfully,
+  techIssue,
+} from './redux/RegistrationState';
 
 export default function Registration() {
-  const state = useSelector((data) => data.state);
+  const { state } = useSelector((data: RootState) => data.register);
   const dispatch = useDispatch();
 
   const { register, handleSubmit } = useForm<RegistrationData>();
@@ -34,11 +38,17 @@ export default function Registration() {
       });
       if (result.status === 200) {
         const res = await result.text();
+        dispatch(successfully());
+        console.log(state);
         // set the state for the successfully created text to the res
         Router.push('/login');
       } else if (result.status === 409) {
+        dispatch(alreadyInUse());
+        console.log(state);
         // email already in use
       } else {
+        dispatch(techIssue());
+        console.log(state);
         //set the state error message to technical issue and display it on the resend page
         Router.push('/resend');
       }
