@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Joi from "joi";
 import { RegistrationData } from "../types/types";
+import Router from "next/router";
 
 export default function Registration() {
   const { register, handleSubmit } = useForm<RegistrationData>();
@@ -21,12 +22,21 @@ export default function Registration() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Accept: "application/json",
         },
         body: JSON.stringify(value),
       });
-      const res = await result.json();
-      console.log(res);
-    }
+      if (result.status === 200) {
+        const res = await result.text();
+        // set the state for the successfully created text to the res
+        Router.push("/login");
+      } else if (result.status === 409) {
+        // email already in use
+      } else {
+        //set the state error message to technical issue and display it on the resend page
+        Router.push("/resend");
+      }
+    } else console.log(error);
   };
   return (
     <motion.div

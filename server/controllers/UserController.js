@@ -25,8 +25,8 @@ const register = async (req, res) => {
       },
       (err, response) => {
         if (!response) {
-          return res.json({
-            status: "error",
+          return res.status(409).json({
+            status: 409,
             error: "username or email already in use",
           });
         }
