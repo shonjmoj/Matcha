@@ -33,7 +33,7 @@ export default function Login() {
         className='flex flex-col items-center gap-2'
         onSubmit={handleSubmit(onSubmit)}>
         <label className='flex flex-col font-semibold'>
-          Username / email
+          Username / Email
           <input
             type='text'
             {...register('email', { required: true })}
