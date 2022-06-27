@@ -22,10 +22,18 @@ export default function Registration() {
     password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
     repeat_password: Joi.ref("password"),
   });
-  const onSubmit: SubmitHandler<Data> = (data) => {
+  const onSubmit: SubmitHandler<Data> = async (data) => {
     const { error, value } = schema.validate(data);
     if (!error) {
-      console.log("all good");
+      const result = await fetch("http://localhost:3001/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(value),
+      });
+      const res = await result.json();
+      console.log(res);
     }
   };
   return (

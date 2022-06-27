@@ -1,6 +1,7 @@
 const { userModel, tokenModel } = require("../models/user");
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
+require("dotenv").config();
 const confirmEmail = async (req, res) => {
   tokenModel.findOne({ token: req.params.token }, function (err, token) {
     if (!token) {
@@ -38,7 +39,7 @@ const confirmEmail = async (req, res) => {
 };
 const resendConfirmation = async (req, res) => {
   userModel.findOne({ email: req.body.email }, function (err, user) {
-    if (err || !user) {
+    if (err) {
       return res
         .status(400)
         .send(
