@@ -4,7 +4,13 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 
 export default function Login() {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  console.log(errors);
+
   return (
     <motion.div
       className='text-white container w-full sm:w-[50%]'
@@ -25,7 +31,7 @@ export default function Login() {
           Username / email
           <input
             type='text'
-            {...register('username / email')}
+            {...register('username / email', { required: true })}
             className='bg-transparent border-white font-normal border-[1px] outline-none p-2'
           />
         </label>
@@ -33,7 +39,7 @@ export default function Login() {
           Password
           <input
             type='password'
-            {...register('password')}
+            {...register('password', { required: true })}
             className='bg-transparent border-white font-normal border-[1px] outline-none p-2'
           />
         </label>

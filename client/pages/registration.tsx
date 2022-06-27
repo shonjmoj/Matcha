@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
+import { required } from 'joi';
 
 export default function registration() {
   const { register, handleSubmit } = useForm();
@@ -26,7 +27,7 @@ export default function registration() {
           First name
           <input
             type='text'
-            {...register('firstname')}
+            {...register('firstname', { required: true })}
             className='bg-transparent border-[1px] p-1 font-normal lg:p-2 outline-none'
           />
         </label>
@@ -34,7 +35,7 @@ export default function registration() {
           Last name
           <input
             type='text'
-            {...register('lastname')}
+            {...register('lastname', { required: true })}
             className='bg-transparent border-[1px] p-1 font-normal lg:p-2 outline-none'
           />
         </label>
@@ -42,7 +43,7 @@ export default function registration() {
           Username
           <input
             type='text'
-            {...register('username')}
+            {...register('username', { required: true })}
             className='bg-transparent border-[1px] p-1 font-normal lg:p-2 outline-none'
           />
         </label>
@@ -50,7 +51,7 @@ export default function registration() {
           email
           <input
             type='email'
-            {...register('email')}
+            {...register('email', { required: true })}
             className='bg-transparent border-[1px] p-1 font-normal lg:p-2 outline-none'
           />
         </label>
@@ -58,7 +59,7 @@ export default function registration() {
           Password
           <input
             type='password'
-            {...register('password')}
+            {...register('password', { required: true })}
             className='bg-transparent border-[1px] p-1 font-normal lg:p-2 outline-none'
           />
         </label>
