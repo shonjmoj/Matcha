@@ -1,10 +1,33 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useForm } from 'react-hook-form';
-import { required } from 'joi';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import Joi from 'joi';
 
-export default function registration() {
-  const { register, handleSubmit } = useForm();
+type Data = {
+  firstname: String;
+  lastname: String;
+  username: String;
+  email: String;
+  password: String;
+  repeat_password: String;
+};
+
+export default function Registration() {
+  const { register, handleSubmit } = useForm<Data>();
+  const schema = Joi.object({
+    firstname: Joi.string().pattern(new RegExp('^[A-Z][a-z]{5,10}')).required(),
+    lastname: Joi.string().pattern(new RegExp('^[A-Z][a-z]{5,10}')).required(),
+    username: Joi.string().alphanum().min(5).max(30).required(),
+    email: Joi.string().email({ tlds: { allow: false } }),
+    password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
+    repeat_password: Joi.ref('password'),
+  });
+  const onSubmit: SubmitHandler<Data> = (data) => {
+    const { error, value } = schema.validate(data);
+    if (!error) {
+      console.log('all good');
+    }
+  };
   return (
     <motion.div
       className='text-white container w-full sm:w-[30%]'
@@ -15,14 +38,12 @@ export default function registration() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
-        className='text-2xl xl:text-4xl text-center mb-4 xl:mb-8 font-semibold mx-2'>
+        className='mx-2 mb-4 text-2xl font-semibold text-center xl:text-4xl xl:mb-8'>
         Get noticed for who you are, not what you look like.
       </motion.h1>
       <form
-        className='grid lg:grid-cols-2 justify-center items-center gap-3'
-        onSubmit={handleSubmit((data) => {
-          console.log(data);
-        })}>
+        className='grid items-center justify-center gap-3 lg:grid-cols-2'
+        onSubmit={handleSubmit(onSubmit)}>
         <label className='flex flex-col font-semibold'>
           First name
           <input
@@ -67,12 +88,13 @@ export default function registration() {
           Confirm Password
           <input
             type='password'
+            {...register('repeat_password')}
             className='bg-transparent border-[1px] p-1 font-normal lg:p-2 outline-none'
           />
         </label>
         <motion.button
           type='submit'
-          className='mt-2 border-2 p-1 lg:p-2 shadow-xs hover:shadow-sm hover:shadow-white transition-all duration-200 shadow-white/50 lg:col-span-2'
+          className='p-1 mt-2 transition-all duration-200 border-2 shadow-xs lg:p-2 hover:shadow-sm hover:shadow-white shadow-white/50 lg:col-span-2'
           whileTap={{
             scale: 1,
           }}
