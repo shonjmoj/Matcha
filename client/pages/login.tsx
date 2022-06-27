@@ -3,11 +3,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import Joi from 'joi';
-
-type LoginData = {
-  email: String;
-  password: String;
-};
+import { LoginData } from '../types/types';
 
 export default function Login() {
   const { register, handleSubmit } = useForm<LoginData>();
