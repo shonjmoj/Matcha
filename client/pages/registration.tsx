@@ -44,7 +44,7 @@ export default function Registration() {
         dispatch(setMessage(res.msg));
         Router.push("/resend");
       }
-    } else console.log(error);
+    } else dispatch(setMessage(error));
   };
   return (
     <motion.div
