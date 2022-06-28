@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 const Lovers_talking = () => {
   return (
     <motion.div
-      className='absolute bottom-0 left-0 hidden w-48 h-48 md:block'
+      className='absolute bottom-0 left-0 hidden w-48 h-48 lg:block'
       initial={{ opacity: 0.1, y: -400 }}
       animate={{ opacity: 0.8, y: 0 }}
       transition={{ delay: 0.8, type: 'tween', duration: 4 }}>
