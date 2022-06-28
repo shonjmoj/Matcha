@@ -18,8 +18,8 @@ export default function Registration() {
 
   const { register, handleSubmit } = useForm<RegistrationData>();
   const schema = Joi.object({
-    firstname: Joi.string().pattern(new RegExp('^[A-Z][a-z]{5,10}')).required(),
-    lastname: Joi.string().pattern(new RegExp('^[A-Z][a-z]{5,10}')).required(),
+    firstname: Joi.string().required(),
+    lastname: Joi.string().required(),
     username: Joi.string().alphanum().min(5).max(30).required(),
     email: Joi.string().email({ tlds: { allow: false } }),
     password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
