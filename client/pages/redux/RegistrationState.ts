@@ -1,29 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export interface RegistrationState {
-    state: 'pending' | 'success' | 'inUSe' | 'techIssue'
+  state: "pending" | "success" | "inUSe" | "techIssue";
 }
 
 const initialState: RegistrationState = {
-    state : 'pending'
-}
+  state: "pending",
+};
 
 export const registrationSlice = createSlice({
-    name: 'registrationState',
-    initialState,
-    reducers : {
-        alreadyInUse: (data: RegistrationState) => {
-            data.state = 'inUSe'
-        },
-        successfully : (data: RegistrationState) => {
-            data.state = 'success'
-        },
-        techIssue : (data: RegistrationState) => {
-            data.state = 'techIssue'
-        }
-    }
-})
+  name: "registrationState",
+  initialState,
+  reducers: {
+    setMessage: (data: RegistrationState, action) => {
+      data.state = action.payload;
+    },
+  },
+});
 
-export const {alreadyInUse, successfully, techIssue} = registrationSlice.actions
+export const { setMessage } = registrationSlice.actions;
 
-export default registrationSlice.reducer
+export default registrationSlice.reducer;
