@@ -4,9 +4,14 @@ import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Joi from "joi";
 import { LoginData } from "../types/types";
+import { setMessage } from "./redux/RegistrationState";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "./redux/store";
 
 export default function Login() {
   const { register, handleSubmit } = useForm<LoginData>();
+  const { state } = useSelector((data: RootState) => data.register);
+  const dispatch = useDispatch();
   const schema = Joi.object({
     email: Joi.string().email({ tlds: { allow: false } }),
     password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
@@ -24,12 +29,15 @@ export default function Login() {
       if (result.status === 409) {
         const res = await result.json();
         // error on res.error (user doesn't exist)
+        dispatch(setMessage(res.error));
       } else if (result.status === 401) {
         const res = await result.json();
         // error on res.error (user not verified)
+        dispatch(setMessage(res.error));
       } else if (result.status === 408) {
         const res = await result.json();
         // invalid email / password => message on res.error
+        dispatch(setMessage(res.error));
       } else {
         const res = await result.json();
         // token on res.data and the message on res.message
