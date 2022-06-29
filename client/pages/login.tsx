@@ -7,6 +7,7 @@ import { LoginData } from "../types/types";
 import { setMessage } from "./redux/RegistrationState";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./redux/store";
+import cookies from "cookies";
 
 export default function Login() {
   const { register, handleSubmit } = useForm<LoginData>();
@@ -40,7 +41,8 @@ export default function Login() {
         dispatch(setMessage(res.error));
       } else {
         const res = await result.json();
-        // token on res.data and the message on res.message
+        console.log(res.data);
+        document.cookie = `x-access-token=${res.data}`;
       }
     }
   };
