@@ -13,3 +13,7 @@ export type RegistrationData = {
 export type ResendData = {
   email: String;
 };
+export type ModalProps = {
+  title: String;
+  content: String;
+};
