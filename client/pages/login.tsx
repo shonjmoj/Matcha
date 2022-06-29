@@ -1,16 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Joi from "joi";
 import { LoginData } from "../types/types";
+import { setMessage } from "./redux/RegistrationState";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "./redux/store";
+import Modal from "../components/Modal";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Login() {
   const { register, handleSubmit } = useForm<LoginData>();
+  const { state } = useSelector((data: RootState) => data.register);
+  const dispatch = useDispatch();
+  const [err, setErr] = useState(false);
   const schema = Joi.object({
     email: Joi.string().email({ tlds: { allow: false } }),
     password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
   });
+  useEffect(() => {
+    const notify = () => toast(state);
+    if (state !== "pending") notify();
+  }, [err, state]);
   const onSubmit: SubmitHandler<LoginData> = async (data) => {
     const { error, value } = schema.validate(data);
     if (!error) {
@@ -24,17 +36,21 @@ export default function Login() {
       if (result.status === 409) {
         const res = await result.json();
         // error on res.error (user doesn't exist)
+        dispatch(setMessage(res.error));
       } else if (result.status === 401) {
         const res = await result.json();
         // error on res.error (user not verified)
+        dispatch(setMessage(res.error));
       } else if (result.status === 408) {
         const res = await result.json();
         // invalid email / password => message on res.error
+        dispatch(setMessage(res.error));
       } else {
         const res = await result.json();
-        // token on res.data and the message on res.message
+        document.cookie = `x-access-token=${res.data}`;
       }
     }
+    setErr(!err);
   };
   return (
     <motion.div
@@ -43,6 +59,9 @@ export default function Login() {
       animate={{ x: 0, opacity: 1 }}
       transition={{ delay: 0.5 }}
     >
+      {state !== "pending" && (
+        <Modal title="Registration successful" content={state} />
+      )}
       <motion.h1
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -51,6 +70,7 @@ export default function Login() {
       >
         It is never too late <br /> to fall in love
       </motion.h1>
+      <Toaster />
       <form
         className="flex flex-col items-center gap-2"
         onSubmit={handleSubmit(onSubmit)}
