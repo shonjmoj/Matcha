@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -7,8 +7,8 @@ import { LoginData } from "../types/types";
 import { setMessage } from "./redux/RegistrationState";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./redux/store";
-import cookies from "cookies";
 import Modal from "../components/Modal";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Login() {
   const { register, handleSubmit } = useForm<LoginData>();
@@ -19,6 +19,10 @@ export default function Login() {
     email: Joi.string().email({ tlds: { allow: false } }),
     password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
   });
+  useEffect(() => {
+    const notify = () => toast(state);
+    if (state !== "pending") notify();
+  }, [err, state]);
   const onSubmit: SubmitHandler<LoginData> = async (data) => {
     const { error, value } = schema.validate(data);
     if (!error) {
@@ -46,7 +50,7 @@ export default function Login() {
         document.cookie = `x-access-token=${res.data}`;
       }
     }
-    setErr(true);
+    setErr(!err);
   };
   return (
     <motion.div
@@ -55,7 +59,9 @@ export default function Login() {
       animate={{ x: 0, opacity: 1 }}
       transition={{ delay: 0.5 }}
     >
-      <Modal title="Registration successful" content={state} />
+      {state !== "pending" && (
+        <Modal title="Registration successful" content={state} />
+      )}
       <motion.h1
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -64,9 +70,7 @@ export default function Login() {
       >
         It is never too late <br /> to fall in love
       </motion.h1>
-      {err && state !== "pending" && (
-        <p className="mb-4 font-semibold text-center">{state}</p>
-      )}
+      <Toaster />
       <form
         className="flex flex-col items-center gap-2"
         onSubmit={handleSubmit(onSubmit)}
