@@ -41,7 +41,6 @@ export default function Login() {
         dispatch(setMessage(res.error));
       } else {
         const res = await result.json();
-        console.log(res.data);
         document.cookie = `x-access-token=${res.data}`;
       }
     }
