@@ -26,7 +26,7 @@ export default function Login() {
   const onSubmit: SubmitHandler<LoginData> = async (data) => {
     const { error, value } = schema.validate(data);
     if (!error) {
-      const result = await fetch("http://localhost:3001/api/login", {
+      const result = await fetch("http://localhost:3002/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

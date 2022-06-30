@@ -85,10 +85,6 @@ const register = async (req, res) => {
     }
   }
 };
-const logoutUser = (req, res) => {
-  res.clearCookie("x-access-token");
-  res.status(200).json({ status: "ok" });
-};
 const login = async (req, res) => {
   const { email, password } = req.body;
   const user = await userModel.findOne({ email }).lean();

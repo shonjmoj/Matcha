@@ -1,7 +1,14 @@
-import React from "react";
+import React, { FormEventHandler } from "react";
 import { motion } from "framer-motion";
+import { useCookies } from "react-cookie";
+import Router from "next/router";
 
-export default function profilecompletion() {
+export default function Profilecompletion() {
+  const [cookies, setCookie, removeCookie] = useCookies(["x-access-token"]);
+  const Logout: FormEventHandler = () => {
+    removeCookie("x-access-token");
+    Router.push("/");
+  };
   return (
     <div className="flex flex-col items-center w-full h-full gap-4 lg:justify-start">
       <motion.div
@@ -19,7 +26,7 @@ export default function profilecompletion() {
           Matcha
         </motion.h1>
         <div className="hidden font-semibold lg:m-4 lg:block">
-          <motion.button>Log out</motion.button>
+          <motion.button onClick={Logout}>Log out</motion.button>
         </div>
       </motion.div>
       <motion.div
