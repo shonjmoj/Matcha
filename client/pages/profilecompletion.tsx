@@ -6,8 +6,8 @@ export default function profilecompletion() {
     <div className='h-full w-full flex flex-col gap-4 items-center lg:justify-start'>
       <motion.div
         className='h-max my-2 lg:my-4 lg:w-[80%] lg:flex lg:items-center lg:justify-between'
-        initial={{ opacity: 0, y: -100 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, x: -100 }}
+        animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.5 }}>
         <motion.h1
           initial={{ opacity: 0 }}
@@ -21,9 +21,9 @@ export default function profilecompletion() {
         </div>
       </motion.div>
       <motion.div
-        className='m-2 lg:m-4 w-full flex flex-col items-center justify-center'
-        initial={{ opacity: 0, y: -100 }}
-        animate={{ opacity: 1, y: 0 }}
+        className='m-2 lg:m-4 w-[90%] md:w-[80%] flex flex-col items-center justify-center'
+        initial={{ opacity: 0, x: -100 }}
+        animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 1 }}>
         <h1 className='text-xl md:text-2xl lg:text-3xl font-semibold mb-4 lg:mb-8'>
           Complete your profile
@@ -70,7 +70,7 @@ export default function profilecompletion() {
             </select>
           </label>
           <label className='flex flex-col font-semibold'>
-            Interest
+            Interested by
             <select className='bg-transparent border-[1px] p-1 font-normal lg:p-2 outline-none appearance-none'>
               <option defaultValue={''} hidden></option>
               <option value='Boys' className='bg-soft-pink'>
