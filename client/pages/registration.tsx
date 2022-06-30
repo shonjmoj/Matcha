@@ -112,7 +112,7 @@ export default function Registration() {
         </label>
         <motion.button
           type='submit'
-          className='p-1 mt-2 transition-all duration-200 border-2 shadow-xs lg:p-2 hover:shadow-sm hover:shadow-white shadow-white/50 lg:col-span-2'
+          className='p-1 mt-2 border-2 shadow-xs lg:p-2 hover:shadow-sm hover:shadow-white shadow-white/50 lg:col-span-2'
           whileTap={{
             scale: 1,
           }}

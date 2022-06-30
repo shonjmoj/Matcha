@@ -99,7 +99,7 @@ export default function Login() {
         </span>
         <motion.button
           type="submit"
-          className="px-20 py-2 mt-2 transition-all duration-200 border-2 shadow-xs hover:shadow-sm hover:shadow-white shadow-white/50"
+          className="px-20 py-2 mt-2 border-2 shadow-xs hover:shadow-sm hover:shadow-white shadow-white/50"
           whileTap={{
             scale: 1,
           }}
