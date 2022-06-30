@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { AnyAction, createSlice } from "@reduxjs/toolkit";
 
 export interface RegistrationState {
   state: "pending" | "success" | "inUSe" | "techIssue";
