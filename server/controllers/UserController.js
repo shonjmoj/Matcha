@@ -114,4 +114,4 @@ const login = async (req, res) => {
   res.status(408).json({ status: "error", error: "invalid email / password" });
 };
 
-module.exports = { register, login, logoutUser };
+module.exports = { register, login };

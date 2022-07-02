@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type LoginData = {
   email: String;
   password: String;
@@ -16,4 +18,7 @@ export type ResendData = {
 export type ModalProps = {
   title: String;
   content: String;
+};
+export type LayoutProps = {
+  children: ReactNode;
 };

@@ -7,6 +7,7 @@ import Router from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "./redux/store";
 import { setMessage } from "./redux/RegistrationState";
+import HomeLayout from "../components/Layouts/HomeLayout";
 
 export default function Registration() {
   const { state } = useSelector((data: RootState) => data.register);
@@ -24,7 +25,7 @@ export default function Registration() {
   const onSubmit: SubmitHandler<RegistrationData> = async (data) => {
     const { error, value } = schema.validate(data);
     if (!error) {
-      const result = await fetch("http://localhost:3002/api/register", {
+      const result = await fetch("http://localhost:3001/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -47,83 +48,85 @@ export default function Registration() {
     } else dispatch(setMessage(error));
   };
   return (
-    <motion.div
-      className="text-white container w-full sm:w-[30%]"
-      initial={{ x: -600, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      transition={{ delay: 0.5 }}
-    >
-      <motion.h1
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="mx-2 mb-4 text-2xl font-semibold text-center xl:text-4xl xl:mb-8"
+    <HomeLayout>
+      <motion.div
+        className="text-white container w-full sm:w-[30%]"
+        initial={{ x: -600, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ delay: 0.5 }}
       >
-        Get noticed for who you are, not what you look like.
-      </motion.h1>
-      <form
-        className="grid items-center justify-center gap-3 lg:grid-cols-2"
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <label className="flex flex-col font-semibold">
-          First name
-          <input
-            type="text"
-            {...register("firstname", { required: true })}
-            className="bg-transparent border-[1px] p-1 font-normal lg:p-2 outline-none"
-          />
-        </label>
-        <label className="flex flex-col font-semibold">
-          Last name
-          <input
-            type="text"
-            {...register("lastname", { required: true })}
-            className="bg-transparent border-[1px] p-1 font-normal lg:p-2 outline-none"
-          />
-        </label>
-        <label className="flex flex-col font-semibold lg:col-span-2">
-          Username
-          <input
-            type="text"
-            {...register("username", { required: true })}
-            className="bg-transparent border-[1px] p-1 font-normal lg:p-2 outline-none"
-          />
-        </label>
-        <label className="flex flex-col font-semibold lg:col-span-2">
-          Email
-          <input
-            type="email"
-            {...register("email", { required: true })}
-            className="bg-transparent border-[1px] p-1 font-normal lg:p-2 outline-none"
-          />
-        </label>
-        <label className="flex flex-col font-semibold">
-          Password
-          <input
-            type="password"
-            {...register("password", { required: true })}
-            className="bg-transparent border-[1px] p-1 font-normal lg:p-2 outline-none"
-          />
-        </label>
-        <label className="flex flex-col font-semibold">
-          Confirm Password
-          <input
-            type="password"
-            {...register("repeat_password")}
-            className="bg-transparent border-[1px] p-1 font-normal lg:p-2 outline-none"
-          />
-        </label>
-        <motion.button
-          type="submit"
-          className="p-1 mt-2 border-2 shadow-xs lg:p-2 hover:shadow-sm hover:shadow-white shadow-white/50 lg:col-span-2"
-          whileTap={{
-            scale: 1,
-          }}
-          whileHover={{ scale: 1.1 }}
+        <motion.h1
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5 }}
+          className="mx-2 mb-4 text-2xl font-semibold text-center xl:text-4xl xl:mb-8"
         >
-          Register
-        </motion.button>
-      </form>
-    </motion.div>
+          Get noticed for who you are, not what you look like.
+        </motion.h1>
+        <form
+          className="grid items-center justify-center gap-3 lg:grid-cols-2"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <label className="flex flex-col font-semibold">
+            First name
+            <input
+              type="text"
+              {...register("firstname", { required: true })}
+              className="bg-transparent border-[1px] p-1 font-normal lg:p-2 outline-none"
+            />
+          </label>
+          <label className="flex flex-col font-semibold">
+            Last name
+            <input
+              type="text"
+              {...register("lastname", { required: true })}
+              className="bg-transparent border-[1px] p-1 font-normal lg:p-2 outline-none"
+            />
+          </label>
+          <label className="flex flex-col font-semibold lg:col-span-2">
+            Username
+            <input
+              type="text"
+              {...register("username", { required: true })}
+              className="bg-transparent border-[1px] p-1 font-normal lg:p-2 outline-none"
+            />
+          </label>
+          <label className="flex flex-col font-semibold lg:col-span-2">
+            Email
+            <input
+              type="email"
+              {...register("email", { required: true })}
+              className="bg-transparent border-[1px] p-1 font-normal lg:p-2 outline-none"
+            />
+          </label>
+          <label className="flex flex-col font-semibold">
+            Password
+            <input
+              type="password"
+              {...register("password", { required: true })}
+              className="bg-transparent border-[1px] p-1 font-normal lg:p-2 outline-none"
+            />
+          </label>
+          <label className="flex flex-col font-semibold">
+            Confirm Password
+            <input
+              type="password"
+              {...register("repeat_password")}
+              className="bg-transparent border-[1px] p-1 font-normal lg:p-2 outline-none"
+            />
+          </label>
+          <motion.button
+            type="submit"
+            className="p-1 mt-2 border-2 shadow-xs lg:p-2 hover:shadow-sm hover:shadow-white shadow-white/50 lg:col-span-2"
+            whileTap={{
+              scale: 1,
+            }}
+            whileHover={{ scale: 1.1 }}
+          >
+            Register
+          </motion.button>
+        </form>
+      </motion.div>
+    </HomeLayout>
   );
 }

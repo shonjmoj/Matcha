@@ -1,16 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 .Poppins {
-    font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 * {
   @apply Poppins text-white;
-}
-
-#__next {
-    @apply bg-gradient-to-br from-pink via-soft-pink to-pink h-screen w-screen flex justify-center items-center
 }
