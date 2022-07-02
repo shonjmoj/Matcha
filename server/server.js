@@ -9,8 +9,9 @@ const {
   confirmEmail,
   resendConfirmation,
 } = require("./controllers/confirmEmailController");
+const profileSetup = require("./controllers/profileSetup");
 const PORT = process.env.PORT || 3003;
-app.use(cors());
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(express.json());
 app.use(cookies());
 mongoose.connect(process.env.URI, {
@@ -22,7 +23,7 @@ app.post("/api/register", register);
 app.post("/api/login", login);
 app.get("/confirmation/:email/:token", confirmEmail);
 app.post("/api/resendconfirmation", resendConfirmation);
-//app.post("/api/profilesetup", profileSetup);
+app.post("/api/profilesetup", profileSetup);
 app.listen(PORT, () => {
   console.log(`listening to port ${PORT}`);
 });

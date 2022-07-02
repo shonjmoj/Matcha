@@ -7,16 +7,12 @@ const ProfileSchema = new mongoose.Schema(
       required: true,
       ref: "UserSchema",
     },
-    firstName: String,
-    lastName: String,
     age: Number,
     gender: String,
     orientation: String,
     interested_in: String,
-    interests: [{ type: String }],
     bio: String,
-    profile_picture: String,
-    pictures: [{ type: String }],
+    age_range: { type: Number, default: 18 },
   },
   { collection: "user_profile" }
 );

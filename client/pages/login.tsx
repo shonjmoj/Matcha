@@ -74,10 +74,10 @@ export default function Login() {
         </motion.h1>
         <Toaster />
         <form
-          className="flex flex-col items-center gap-2"
+          className="flex flex-col items-center gap-2 p-2"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <label className="flex flex-col font-semibold">
+          <label className="flex flex-col font-semibold w-1/2">
             Username / Email
             <input
               type="text"
@@ -85,7 +85,7 @@ export default function Login() {
               className="bg-transparent border-white font-normal border-[1px] outline-none p-2"
             />
           </label>
-          <label className="flex flex-col font-semibold">
+          <label className="flex flex-col font-semibold w-1/2">
             Password
             <input
               type="password"
