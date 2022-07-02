@@ -1,16 +1,24 @@
 import { LayoutProps } from "../../types/types";
 import HomeLayout from "./HomeLayout";
-import React, { FormEventHandler } from "react";
+import React, { FormEventHandler, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useCookies } from "react-cookie";
 import Router from "next/router";
+import _ from "lodash";
 
 const ProtectedLayout = ({ children }: LayoutProps) => {
   const [cookies, setCookie, removeCookie] = useCookies(["x-access-token"]);
+  const [showChild, setShowChild] = useState(false);
+  useEffect(() => {
+    if (_.isEmpty(cookies)) setShowChild(true);
+  }, []);
   const Logout: FormEventHandler = () => {
     removeCookie("x-access-token");
     Router.push("/login");
   };
+  if (showChild) {
+    return <HomeLayout>not Logged in</HomeLayout>;
+  }
   return (
     <HomeLayout>
       <div className="flex flex-col items-center w-full h-full gap-4 lg:justify-start">

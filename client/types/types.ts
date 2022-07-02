@@ -12,6 +12,13 @@ export type RegistrationData = {
   password: String;
   repeat_password: String;
 };
+export type ProfileData = {
+  age: Number;
+  gender: String;
+  orientation: String;
+  interested_in: String;
+  bio: String;
+};
 export type ResendData = {
   email: String;
 };

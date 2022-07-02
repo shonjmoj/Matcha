@@ -1,7 +1,42 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
 import ProtectedLayout from "../components/Layouts/ProtectedLayout";
+import { ProfileData } from "../types/types";
+import Joi from "joi";
+import { useCookies } from "react-cookie";
 
 export default function Profilecompletion() {
+  const { register, handleSubmit, watch } = useForm<ProfileData>();
+  const [cookies, setCookie, removeCookie] = useCookies(["x-access-token"]);
+  const schema = Joi.object({
+    age: Joi.number().min(18).max(98).required(),
+    gender: Joi.string(),
+    orientation: Joi.string(),
+    interested_in: Joi.string(),
+    bio: Joi.string(),
+  });
+  const onSubmit: SubmitHandler<ProfileData> = async (data) => {
+    const { error, value } = schema.validate(data);
+    if (!error) {
+      try {
+        const result = await fetch("http://localhost:3001/api/profilesetup", {
+          method: "POST",
+          credentials: "include",
+
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(value),
+        });
+        const res = await result.json();
+        console.log(res);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
   return (
     <ProtectedLayout>
       <div className="flex flex-col items-center w-full h-full gap-4 lg:justify-start">
@@ -14,17 +49,24 @@ export default function Profilecompletion() {
           <h1 className="mb-4 text-xl font-semibold md:text-2xl lg:text-3xl lg:mb-8">
             Complete your profile
           </h1>
-          <form className="flex flex-col gap-2 md:gap-4 lg:grid lg:grid-cols-2 lg:w-[40%]">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col gap-2 md:gap-4 lg:grid lg:grid-cols-2 lg:w-[40%]"
+          >
             <label className="flex flex-col font-semibold">
               Age
               <input
+                {...register("age")}
                 type="number"
                 className="bg-transparent border-[1px] p-1 font-normal lg:p-2 outline-none appearance-none"
               />
             </label>
             <label className="flex flex-col font-semibold">
-              Sexe
-              <select className="bg-transparent border-[1px] p-1 font-normal lg:p-2 outline-none appearance-none">
+              Gender
+              <select
+                {...register("gender")}
+                className="bg-transparent border-[1px] p-1 font-normal lg:p-2 outline-none appearance-none"
+              >
                 <option defaultValue={""} hidden></option>
                 <option value="Male" className="bg-soft-pink">
                   Male
@@ -39,7 +81,10 @@ export default function Profilecompletion() {
             </label>
             <label className="flex flex-col font-semibold">
               Oriantation
-              <select className="bg-transparent border-[1px] p-1 font-normal lg:p-2 outline-none appearance-none">
+              <select
+                {...register("orientation")}
+                className="bg-transparent border-[1px] p-1 font-normal lg:p-2 outline-none appearance-none"
+              >
                 <option defaultValue={""} hidden></option>
                 <option value="Straight" className="bg-soft-pink">
                   Straight
@@ -55,9 +100,13 @@ export default function Profilecompletion() {
                 </option>
               </select>
             </label>
+
             <label className="flex flex-col font-semibold">
               Interested in
-              <select className="bg-transparent border-[1px] p-1 font-normal lg:p-2 outline-none appearance-none">
+              <select
+                {...register("interested_in")}
+                className="bg-transparent border-[1px] p-1 font-normal lg:p-2 outline-none appearance-none"
+              >
                 <option defaultValue={""} hidden></option>
                 <option value="Boys" className="bg-soft-pink">
                   Boys
@@ -70,9 +119,13 @@ export default function Profilecompletion() {
                 </option>
               </select>
             </label>
+
             <label className="flex flex-col col-span-2 font-semibold">
               Bio
-              <textarea className="bg-transparent border-[1px] p-1 font-normal lg:p-2 outline-none appearance-none"></textarea>
+              <textarea
+                {...register("bio")}
+                className="bg-transparent border-[1px] p-1 font-normal lg:p-2 outline-none appearance-none"
+              ></textarea>
             </label>
             <motion.button
               type="submit"

@@ -50,7 +50,7 @@ export default function Registration() {
   return (
     <HomeLayout>
       <motion.div
-        className="text-white container w-full sm:w-[30%]"
+        className="text-white container w-full lg:w-[30%]"
         initial={{ x: -600, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ delay: 0.5 }}
