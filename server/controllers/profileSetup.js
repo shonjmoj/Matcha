@@ -40,7 +40,7 @@ const profileSetup = async (req, res) => {
       });
     });
   } catch (error) {
-    return res.status(401).json({ message: error.message });
+    return res.status(401).json({ msg: error.message });
   }
 };
 
