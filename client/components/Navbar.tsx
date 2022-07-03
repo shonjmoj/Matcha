@@ -42,9 +42,18 @@ export default function Navbar() {
           isClicked ? "top-12 opacity-100" : "top-[-490px]"
         } opacity-0 md:opacity-100 transition-all duration-300 ease-in text-xl md:text-lg`}
         >
-          <li>Profile</li>
-          <li>Settings</li>
-          <li onClick={Logout}>log out</li>
+          <li className="cursor-pointer hover:underline hover:scale-105 hover:translate-y-1 transition-all duration-300">
+            Profile
+          </li>
+          <li className="cursor-pointer hover:underline hover:scale-105 hover:translate-y-1 transition-all duration-300">
+            Settings
+          </li>
+          <li
+            className="cursor-pointer hover:underline hover:scale-105 hover:translate-y-1 transition-all duration-300"
+            onClick={Logout}
+          >
+            Log out
+          </li>
         </ul>
       </div>
     </motion.div>

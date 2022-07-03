@@ -10,6 +10,7 @@ import { RootState } from "./redux/store";
 import Modal from "../components/Modal";
 import toast, { Toaster } from "react-hot-toast";
 import HomeLayout from "../components/Layouts/HomeLayout";
+import Router from "next/router";
 
 export default function Login() {
   const { register, handleSubmit } = useForm<LoginData>();
@@ -27,28 +28,36 @@ export default function Login() {
   const onSubmit: SubmitHandler<LoginData> = async (data) => {
     const { error, value } = schema.validate(data);
     if (!error) {
-      const result = await fetch("http://localhost:3001/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(value),
-      });
-      if (result.status === 409) {
-        const res = await result.json();
-        // error on res.error (user doesn't exist)
-        dispatch(setMessage(res.error));
-      } else if (result.status === 401) {
-        const res = await result.json();
-        // error on res.error (user not verified)
-        dispatch(setMessage(res.error));
-      } else if (result.status === 408) {
-        const res = await result.json();
-        // invalid email / password => message on res.error
-        dispatch(setMessage(res.error));
-      } else {
-        const res = await result.json();
-        document.cookie = `x-access-token=${res.data}`;
+      try {
+        const result = await fetch("http://localhost:3001/api/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(value),
+        });
+        if (result.status === 409) {
+          const res = await result.json();
+          // error on res.error (user doesn't exist)
+          dispatch(setMessage(res.error));
+        } else if (result.status === 401) {
+          const res = await result.json();
+          // error on res.error (user not verified)
+          dispatch(setMessage(res.error));
+        } else if (result.status === 408) {
+          const res = await result.json();
+          // invalid email / password => message on res.error
+          dispatch(setMessage(res.error));
+        } else {
+          const res = await result.json();
+          document.cookie = `x-access-token=${res.data}`;
+          if (!res.completed) Router.push("/profilecompletion");
+          else Router.push("/"); // later
+        }
+      } catch (error) {
+        let errorMessage: string = "Internal server Error";
+        if (error instanceof Error) errorMessage = error.message;
+        console.log(errorMessage);
       }
     }
     setErr(!err);

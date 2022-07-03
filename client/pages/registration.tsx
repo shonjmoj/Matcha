@@ -12,7 +12,6 @@ import HomeLayout from "../components/Layouts/HomeLayout";
 export default function Registration() {
   const { state } = useSelector((data: RootState) => data.register);
   const dispatch = useDispatch();
-  console.log(state);
   const { register, handleSubmit } = useForm<RegistrationData>();
   const schema = Joi.object({
     firstname: Joi.string().required(),
