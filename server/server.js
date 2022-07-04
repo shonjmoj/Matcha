@@ -18,7 +18,6 @@ mongoose.connect(process.env.URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-
 app.post("/api/register", register);
 app.post("/api/login", login);
 app.get("/confirmation/:email/:token", confirmEmail);
