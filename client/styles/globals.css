@@ -7,6 +7,19 @@
   font-family: "Poppins", sans-serif;
 }
 
+@layer utilities {
+    .scrollbar::-webkit-scrollbar {
+        width : 4px;
+    }
+    .scrollbar::-webkit-scrollbar-track {
+        border-radius : 100vh;
+    }
+    .scrollbar::-webkit-scrollbar-thumb {
+        background : #FFFFFF;
+        border-radius: 100vh;
+    }
+}
+
 * {
   @apply Poppins text-white;
 }

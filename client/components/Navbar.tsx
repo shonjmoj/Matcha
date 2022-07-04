@@ -12,15 +12,9 @@ export default function Navbar() {
     removeCookie('x-access-token');
     Router.push('/login');
   };
-
-  const variants = {
-    open: { opacity: 1, x: 0 },
-    closed: { opacity: 0, x: '-100%' },
-  };
-
   return (
     <motion.div
-      className='fixed top-0 w-full py-2 md:py-3'
+      className='top-0 w-full py-2 md:py-3'
       initial={{ opacity: 0, x: -100 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 0.2 }}>
@@ -29,7 +23,7 @@ export default function Navbar() {
           initial={{ opacity: 0, y: -100 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className='ml-8 sm:ml-10 md:ml-12 text-2xl font-bold md:text-2xl lg:text-3xl'>
+          className='ml-6 sm:ml-8 md:ml-10 text-2xl font-bold md:text-2xl lg:text-3xl'>
           Matcha
         </motion.h1>
         <div
