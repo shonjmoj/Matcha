@@ -6,6 +6,7 @@ import { useCookies } from "react-cookie";
 import Router from "next/router";
 import Navbar from "../Navbar";
 import _ from "lodash";
+import NotLoggedIn from "../NotLoggedIn";
 
 const ProtectedLayout = ({ children }: LayoutProps) => {
   const [open, setOpen] = useState(false);
@@ -16,7 +17,22 @@ const ProtectedLayout = ({ children }: LayoutProps) => {
   }, [cookies]);
 
   if (showChild) {
-    return <HomeLayout>not Logged in</HomeLayout>;
+    return (
+      <HomeLayout>
+        <div className="flex items-center max-w-5xl md:max-w-7xl mx-auto justify-center flex-wrap p-4">
+          <motion.h1
+            initial={{ opacity: 0 }}
+            animate={{ y: [-500, 0], opacity: 1 }}
+            transition={{ duration: 2 }}
+            className="font-semibold text-3xl md:w-1/2 mb-4 leading-10 tracking-wide"
+          >
+            You’re not logged in, please log in or register if you don’t have an
+            account
+          </motion.h1>
+          <NotLoggedIn />
+        </div>
+      </HomeLayout>
+    );
   }
   return (
     <HomeLayout>
