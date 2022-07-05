@@ -1,14 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+export const UserInterestsSlice = createSlice({
+  name: "UserInterests",
+  initialState: [],
+  reducers: {
+    setInterests: (data: string[], action: PayloadAction<string>) => {
+      data = [...data, action.payload];
+    },
+  },
+});
 
-export const UserInterests = createSlice({
-    name : 'UserInterests',
-    initialState : 'empty',
-    reducers : {
-        setInterests : (data: string, interest : string) => {
-            data = interest
-        }
-    }
-})
-
-export default UserInterests
+export const { setInterests } = UserInterestsSlice.actions;
+export default UserInterestsSlice.reducer;

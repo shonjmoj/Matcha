@@ -1,7 +1,7 @@
-import { AnyAction, createSlice } from "@reduxjs/toolkit";
+import { AnyAction, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface RegistrationState {
-  state: "pending" | "success" | "inUSe" | "techIssue";
+  state: string;
 }
 
 const initialState: RegistrationState = {
@@ -12,7 +12,7 @@ export const registrationSlice = createSlice({
   name: "registrationState",
   initialState,
   reducers: {
-    setMessage: (data: RegistrationState, action) => {
+    setMessage: (data: RegistrationState, action: PayloadAction<string>) => {
       data.state = action.payload;
     },
   },
