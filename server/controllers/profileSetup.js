@@ -4,7 +4,7 @@ const profile_model = require("../models/profile");
 const { userModel } = require("../models/user");
 
 const profileSetup = async (req, res) => {
-  const { age, gender, orientation, interested_in, bio } = req.body;
+  const { age, gender, orientation, interested_in, bio, interests } = req.body;
   const token = req.cookies["x-access-token"];
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -28,6 +28,7 @@ const profileSetup = async (req, res) => {
             orientation,
             interested_in,
             bio,
+            interests,
           },
           (response, err) => {
             if (response) console.log(response);

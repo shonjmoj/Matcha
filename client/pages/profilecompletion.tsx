@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import React, { useState } from "react";
+import React, { MouseEventHandler, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import ProtectedLayout from "../components/Layouts/ProtectedLayout";
 import { ProfileData } from "../types/types";
@@ -26,6 +26,7 @@ export default function Profilecompletion() {
     const { error, value } = schema.validate(data);
     if (!error) {
       try {
+        value.interests = state;
         const result = await fetch("http://localhost:3001/api/profilesetup", {
           method: "POST",
           credentials: "include",
@@ -43,8 +44,9 @@ export default function Profilecompletion() {
       }
     }
   };
-  const addItem = (e: React.MouseEvent<HTMLButtonElement>) => {
-    dispatch(setInterests(e.target.innerText.slice(1)));
+  const addItem: MouseEventHandler = (e) => {
+    const target = e.target as HTMLElement;
+    dispatch(setInterests(target.innerText.slice(1)));
     setToggle(false);
   };
   console.log(state);

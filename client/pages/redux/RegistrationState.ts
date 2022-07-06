@@ -1,7 +1,7 @@
 import { AnyAction, createSlice, PayloadAction } from "@reduxjs/toolkit";
-
+import Joi from "joi";
 export interface RegistrationState {
-  state: string;
+  state: string | Joi.ValidationError;
 }
 
 const initialState: RegistrationState = {

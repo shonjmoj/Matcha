@@ -44,7 +44,7 @@ export default function Registration() {
         dispatch(setMessage(res.msg));
         Router.push("/resend");
       }
-    } else dispatch(setMessage(error));
+    } else dispatch(setMessage(error.message));
   };
   return (
     <HomeLayout>
