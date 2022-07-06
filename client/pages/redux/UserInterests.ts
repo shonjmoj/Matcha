@@ -1,11 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+export type InterestsState = string[];
+
+const initialState: InterestsState = [];
+
 export const UserInterestsSlice = createSlice({
   name: "UserInterests",
-  initialState: [],
+  initialState,
   reducers: {
-    setInterests: (data: string[], action: PayloadAction<string>) => {
-      data = [...data, action.payload];
+    setInterests: (data: InterestsState, action: PayloadAction<string>) => {
+      data.push(action.payload);
     },
   },
 });
