@@ -30,8 +30,8 @@ const profileSetup = async (req, res) => {
             bio,
             interests,
           },
-          (response, err) => {
-            if (response) console.log(response);
+          (err) => {
+            if (err) console.log(err);
           }
         );
         user.isCompleted = true;

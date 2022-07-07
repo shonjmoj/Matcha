@@ -8,7 +8,7 @@ import { useCookies } from "react-cookie";
 import { interests } from "../components/utils/interests";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./redux/store";
-import { setInterests } from "./redux/UserInterests";
+import InterestBtn from "../components/InterestBtn";
 
 export default function Profilecompletion() {
   const [toggle, setToggle] = useState<boolean>(true);
@@ -43,11 +43,6 @@ export default function Profilecompletion() {
         console.log(error);
       }
     }
-  };
-  const addItem: MouseEventHandler = (e) => {
-    const target = e.target as HTMLElement;
-    dispatch(setInterests(target.innerText.slice(1)));
-    setToggle(false);
   };
   console.log(state);
   return (
@@ -135,17 +130,7 @@ export default function Profilecompletion() {
               Interests
               <ul className="overflow-y-scroll scrollbar text-xs lg:text-sm font-light border-[1px] max-w-md h-24 md:h-32 items-start justify-start flex flex-wrap gap-2 p-2 lg:p-3">
                 {interests.map((interest) => (
-                  <motion.li
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="p-2 lg:p-2 border-[1px] rounded-full cursor-pointer shadow-sm shadow-white/50
-                        focus:bg-white focus:text-soft-pink"
-                    value={interest}
-                    onClick={addItem}
-                    key={interest}
-                  >
-                    {interest}
-                  </motion.li>
+                  <InterestBtn key={interest} title={interest} />
                 ))}
               </ul>
             </div>
