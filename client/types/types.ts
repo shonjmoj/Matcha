@@ -20,6 +20,7 @@ export interface ProfileData {
   orientation: String;
   interested_in: String;
   bio: String;
+  interests: String[];
 }
 
 export interface ModalProps {

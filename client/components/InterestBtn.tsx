@@ -23,7 +23,7 @@ const InterestBtn = ({ title }: { title: string }) => {
     setDisabled(false);
   };
   return (
-    <motion.button
+    <motion.li
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       className={`p-2 lg:p-2 border-[1px] rounded-full cursor-pointer shadow-sm shadow-white/50
@@ -34,7 +34,7 @@ const InterestBtn = ({ title }: { title: string }) => {
       onClick={disabled ? removeItem : addItem}
     >
       {title}
-    </motion.button>
+    </motion.li>
   );
 };
 export default InterestBtn;

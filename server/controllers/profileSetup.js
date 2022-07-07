@@ -18,7 +18,7 @@ const profileSetup = async (req, res) => {
       profile_model.findOne({ _userId: id }, async (err, profile) => {
         if (profile)
           return res
-            .status(200)
+            .status(406)
             .json({ msg: "a user with this id already set his profile" });
         await profile_model.create(
           {

@@ -8,9 +8,11 @@ import { interests } from "../components/utils/interests";
 import { useSelector } from "react-redux";
 import { RootState } from "./redux/store";
 import InterestBtn from "../components/InterestBtn";
+import Modal from "../components/Modal";
 
 export default function Profilecompletion() {
   const state = useSelector((data: RootState) => data.interests);
+  const [modalerr, setModalerr] = useState({ state: false, message: "" });
   const { register, handleSubmit } = useForm<ProfileData>();
   const schema = Joi.object({
     age: Joi.number().min(18).max(98).required(),
@@ -18,8 +20,10 @@ export default function Profilecompletion() {
     orientation: Joi.string(),
     interested_in: Joi.string(),
     bio: Joi.string(),
+    interests: Joi.array().min(3),
   });
   const onSubmit: SubmitHandler<ProfileData> = async (data) => {
+    data.interests = state;
     const { error, value } = schema.validate(data);
     if (!error) {
       try {
@@ -35,15 +39,19 @@ export default function Profilecompletion() {
           body: JSON.stringify(value),
         });
         const res = await result.json();
-        console.log(res);
+        if (result.status === 406)
+          setModalerr({ state: true, message: res.msg });
       } catch (error) {
         console.log(error);
       }
+    } else {
+      setModalerr({ state: true, message: error.message });
     }
   };
   return (
     <ProtectedLayout>
       <div className="!mt-16 md:!mt-20 d my-4 md:my-6 flex flex-col items-center w-full h-full gap-4 lg:justify-start">
+        {modalerr.state && <Modal title="error" content={modalerr.message} />}
         <motion.div
           className="w-[90%] md:w-[80%] flex flex-col items-center justify-center"
           initial={{ opacity: 0, x: -100 }}
