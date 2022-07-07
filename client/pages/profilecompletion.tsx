@@ -1,17 +1,15 @@
 import { motion } from "framer-motion";
-import React, { MouseEventHandler, useState } from "react";
+import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import ProtectedLayout from "../components/Layouts/ProtectedLayout";
 import { ProfileData } from "../types/types";
 import Joi from "joi";
-import { useCookies } from "react-cookie";
 import { interests } from "../components/utils/interests";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "./redux/store";
 import InterestBtn from "../components/InterestBtn";
 
 export default function Profilecompletion() {
-  const [toggle, setToggle] = useState<boolean>(true);
   const state = useSelector((data: RootState) => data.interests);
   const { register, handleSubmit } = useForm<ProfileData>();
   const schema = Joi.object({
