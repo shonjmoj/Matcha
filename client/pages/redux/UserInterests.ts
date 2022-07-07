@@ -12,7 +12,8 @@ export const UserInterestsSlice = createSlice({
       data.push(action.payload);
     },
     unsetInterests: (data: InterestsState, action: PayloadAction<string>) => {
-      data = data.filter((e) => e !== action.payload);
+      let index = data.indexOf(action.payload);
+      data.splice(index, 1);
     },
   },
 });

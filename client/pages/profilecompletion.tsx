@@ -13,7 +13,6 @@ import InterestBtn from "../components/InterestBtn";
 export default function Profilecompletion() {
   const [toggle, setToggle] = useState<boolean>(true);
   const state = useSelector((data: RootState) => data.interests);
-  const dispatch = useDispatch();
   const { register, handleSubmit } = useForm<ProfileData>();
   const schema = Joi.object({
     age: Joi.number().min(18).max(98).required(),
