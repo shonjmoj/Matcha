@@ -3,7 +3,7 @@ const Having_fun = () => {
   return (
     <motion.div
       className="absolute bottom-0 right-2 hidden lg:block"
-      initial={{ opacity: 0.1, x: -400 }}
+      initial={{ opacity: 0, x: -400 }}
       animate={{ opacity: 0.8, x: 0 }}
       transition={{ delay: 0.8, type: "tween", duration: 4 }}
     >

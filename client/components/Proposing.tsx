@@ -3,7 +3,7 @@ const Proposing = () => {
   return (
     <motion.div
       className="absolute bottom-0 w-56 h-56 opacity-75 lg:hidden"
-      initial={{ opacity: 0.1, x: -400 }}
+      initial={{ opacity: 0, x: -200 }}
       animate={{ opacity: 0.8, x: 0 }}
       transition={{ delay: 0.8, type: "tween", duration: 4 }}
     >
