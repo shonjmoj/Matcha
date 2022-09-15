@@ -96,5 +96,4 @@ const resendConfirmation = async (req, res) => {
     }
   });
 };
-//module.exports = { resendConfirmation, confirmEmail };
 export { resendConfirmation, confirmEmail };
