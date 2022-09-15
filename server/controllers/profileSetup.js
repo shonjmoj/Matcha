@@ -1,8 +1,9 @@
-require("dotenv").config();
-const jwt = require("jsonwebtoken");
-const profile_model = require("../models/profile");
-const { userModel } = require("../models/user");
+import jwt from "jsonwebtoken";
+import { profile_model } from "../models/profile.js";
+import { userModel } from "../models/user.js";
+import dotnev from "dotenv";
 
+dotnev.config();
 const profileSetup = async (req, res) => {
   const { age, gender, orientation, interested_in, bio, interests } = req.body;
   const token = req.cookies["x-access-token"];
@@ -45,4 +46,4 @@ const profileSetup = async (req, res) => {
   }
 };
 
-module.exports = profileSetup;
+export { profileSetup };

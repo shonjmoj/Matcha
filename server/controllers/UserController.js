@@ -1,9 +1,15 @@
-const bcrypt = require("bcryptjs");
-const { userModel, tokenModel } = require("../models/user");
-const jwt = require("jsonwebtoken");
-const nodemailer = require("nodemailer");
-const crypto = require("crypto");
-require("dotenv").config();
+import bcrypt from "bcryptjs";
+//const bcrypt = require("bcryptjs");
+import { userModel, tokenModel } from "../models/user.js";
+//const { userModel, tokenModel } = require("../models/user");
+import jwt from "jsonwebtoken";
+import nodemailer from "nodemailer";
+import crypto from "crypto";
+import dotenv from "dotenv";
+//const jwt = require("jsonwebtoken");
+//const nodemailer = require("nodemailer");
+//const crypto = require("crypto");
+dotenv.config();
 const register = async (req, res) => {
   const {
     username,
@@ -123,4 +129,4 @@ const login = async (req, res) => {
   res.status(408).json({ status: "error", error: "invalid email / password" });
 };
 
-module.exports = { register, login };
+export { register, login };

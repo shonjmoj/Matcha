@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const ProfileSchema = new mongoose.Schema(
   {
@@ -14,10 +14,11 @@ const ProfileSchema = new mongoose.Schema(
     bio: String,
     interests: [String],
     age_range: { type: Number, default: 18 },
+    images: [String],
   },
   { collection: "user_profile" }
 );
 
 const profile_model = mongoose.model("ProfileSchema", ProfileSchema);
 
-module.exports = profile_model;
+export { profile_model };

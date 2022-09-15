@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-
+//const mongoose = require("mongoose");
+import mongoose from "mongoose";
 const UserSchema = new mongoose.Schema(
   {
     firstName: { type: String, required: true },
@@ -26,4 +26,5 @@ const TokenSchema = new mongoose.Schema({
 
 const userModel = mongoose.model("UserSchema", UserSchema);
 const tokenModel = mongoose.model("TokenModel", TokenSchema);
-module.exports = { userModel, tokenModel };
+//module.exports = { userModel, tokenModel };
+export { userModel, tokenModel };

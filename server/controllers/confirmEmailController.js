@@ -1,7 +1,8 @@
-const { userModel, tokenModel } = require("../models/user");
-const nodemailer = require("nodemailer");
-const crypto = require("crypto");
-require("dotenv").config();
+import { userModel, tokenModel } from "../models/user.js";
+import nodemailer from "nodemailer";
+import crypto from "crypto";
+import dotenv from "dotenv";
+dotenv.config();
 const confirmEmail = async (req, res) => {
   tokenModel.findOne({ token: req.params.token }, function (err, token) {
     if (!token) {
@@ -95,4 +96,5 @@ const resendConfirmation = async (req, res) => {
     }
   });
 };
-module.exports = { resendConfirmation, confirmEmail };
+//module.exports = { resendConfirmation, confirmEmail };
+export { resendConfirmation, confirmEmail };
