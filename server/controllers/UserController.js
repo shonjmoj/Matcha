@@ -1,14 +1,9 @@
 import bcrypt from "bcryptjs";
-//const bcrypt = require("bcryptjs");
 import { userModel, tokenModel } from "../models/user.js";
-//const { userModel, tokenModel } = require("../models/user");
 import jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
 import crypto from "crypto";
 import dotenv from "dotenv";
-//const jwt = require("jsonwebtoken");
-//const nodemailer = require("nodemailer");
-//const crypto = require("crypto");
 dotenv.config();
 const register = async (req, res) => {
   const {
