@@ -1,11 +1,13 @@
 import bcrypt from "bcryptjs";
-import { userModel, tokenModel } from "../models/user.js";
+import { userModel, tokenModel } from "../models/user";
 import jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
 import crypto from "crypto";
 import dotenv from "dotenv";
+import { Request, Response } from "express";
+
 dotenv.config();
-const register = async (req, res) => {
+const register = async (req: Request, res: Response) => {
   const {
     username,
     email,
@@ -86,7 +88,7 @@ const register = async (req, res) => {
     }
   }
 };
-const login = async (req, res) => {
+const login = async (req: Request, res: Response) => {
   const { email, password } = req.body;
   const user = await userModel.findOne({ email }).lean();
 

@@ -1,4 +1,3 @@
-//const mongoose = require("mongoose");
 import mongoose from "mongoose";
 const UserSchema = new mongoose.Schema(
   {
@@ -26,5 +25,4 @@ const TokenSchema = new mongoose.Schema({
 
 const userModel = mongoose.model("UserSchema", UserSchema);
 const tokenModel = mongoose.model("TokenModel", TokenSchema);
-//module.exports = { userModel, tokenModel };
 export { userModel, tokenModel };
