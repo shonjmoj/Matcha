@@ -1,19 +1,18 @@
-import React from "react";
+import React, { ChangeEvent, FormEventHandler, useState } from "react";
 import ProtectedLayout from "../components/Layouts/ProtectedLayout";
 import { motion } from "framer-motion";
 import { AiOutlinePlus } from "react-icons/ai";
-import ImageHolder from "../components/ImageHolder";
-import { useForm } from "react-hook-form";
+import supabase from "../utils/supabase";
+import { useSelector } from "react-redux";
+import UploadPicture from "../components/inputs/UploadPicture";
+import { RootState } from "./redux/store";
 
 export default function ProfilePhotos() {
-  type Data = {
-    file: File;
+  const pictures = useSelector((state: RootState) => state.profilePictures);
+  const handleSubmit: FormEventHandler = (e) => {
+    e.preventDefault();
+    console.log(pictures);
   };
-  const { register, handleSubmit, watch } = useForm<Data>();
-  const onSubmit = async (data: Data) => {
-    console.log(data);
-  };
-  console.log(watch("file"));
   return (
     <ProtectedLayout>
       <motion.form
@@ -22,57 +21,12 @@ export default function ProfilePhotos() {
         transition={{ delay: 0.3 }}
         className="grid grid-cols-2 sm:grid-cols-4 w-[90%] gap-2 md:gap-4 h-[90%]"
         encType="multipart/form-data"
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit}
       >
-        <div className="flex items-center justify-center h-48 gap-2 border-2 border-dashed rounded-md md:h-60">
-          <input
-            type="file"
-            className="hidden opacity-70"
-            accept="image/*"
-            id="file"
-            {...register("file")}
-          />
-          <label htmlFor="file" className="cursor-pointer">
-            Add a photo
-          </label>
-          <AiOutlinePlus size={25} />
-        </div>
-        <div className="flex items-center justify-center h-48 gap-2 border-2 border-dashed rounded-md md:h-60">
-          <input
-            type="file"
-            className="hidden opacity-70"
-            accept="image/*"
-            id="file2"
-          />
-          <label htmlFor="file" className="cursor-pointer">
-            Add a photo
-          </label>
-          <AiOutlinePlus size={25} />
-        </div>
-        <div className="flex items-center justify-center h-48 gap-2 border-2 border-dashed rounded-md md:h-60">
-          <input
-            type="file"
-            className="hidden opacity-70"
-            accept="image/*"
-            id="file"
-          />
-          <label htmlFor="file" className="cursor-pointer">
-            Add a photo
-          </label>
-          <AiOutlinePlus size={25} />
-        </div>
-        <div className="flex items-center justify-center h-48 gap-2 border-2 border-dashed rounded-md md:h-60">
-          <input
-            type="file"
-            className="hidden opacity-70"
-            accept="image/*"
-            id="file"
-          />
-          <label htmlFor="file" className="cursor-pointer">
-            Add a photo
-          </label>
-          <AiOutlinePlus size={25} />
-        </div>
+        <UploadPicture />
+        <UploadPicture />
+        <UploadPicture />
+        <UploadPicture />
         <motion.button
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}

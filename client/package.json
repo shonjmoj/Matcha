@@ -12,6 +12,7 @@
     "@headlessui/react": "^1.6.5",
     "@heroicons/react": "^1.0.6",
     "@reduxjs/toolkit": "^1.8.2",
+    "@supabase/supabase-js": "^1.35.7",
     "cookies": "^0.8.0",
     "framer-motion": "^6.3.13",
     "joi": "^17.6.0",
