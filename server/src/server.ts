@@ -10,6 +10,7 @@ import {
   confirmEmail,
 } from "./controllers/confirmEmailController";
 import { profileSetup } from "./controllers/profileSetup";
+import { checkAuth } from "./middleware/auth";
 const PORT = process.env.PORT || 3003;
 const app = express();
 dotenv.config();
@@ -22,6 +23,7 @@ app.post("/api/login", login);
 app.get("/confirmation/:email/:token", confirmEmail);
 app.post("/api/resendconfirmation", resendConfirmation);
 app.post("/api/profilesetup", profileSetup);
+app.post("/api/uploadpictures", checkAuth, (req, res) => res.send("testing"));
 app.listen(PORT, () => {
   console.log(`listening to port ${PORT}`);
 });
