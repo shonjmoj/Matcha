@@ -6,13 +6,26 @@ import supabase from "../utils/supabase";
 import { useSelector } from "react-redux";
 import UploadPicture from "../components/inputs/UploadPicture";
 import { RootState } from "./redux/store";
+import { useCookies } from "react-cookie";
 
 export default function ProfilePhotos() {
   const pictures = useSelector((state: RootState) => state.profilePictures);
-  const handleSubmit: FormEventHandler = (e) => {
+  const [cookies, setCookie, removeCookie] = useCookies(["x-access-token"]);
+  const handleSubmit: FormEventHandler = async (e) => {
     e.preventDefault();
-    console.log(pictures);
+    const images: { pictures: Array<string> } = { pictures: pictures };
+    const response = await fetch("http://localhost:3001/api/uploadpictures", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "bearer " + cookies["x-access-token"],
+      },
+      body: JSON.stringify(images),
+    });
+    const data = await response.json();
+    console.log(data);
   };
+
   return (
     <ProtectedLayout>
       <motion.form

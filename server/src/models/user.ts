@@ -7,6 +7,7 @@ const UserSchema = new mongoose.Schema(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     isVerified: { type: Boolean, default: false },
+    imagesUploaded: { type: Boolean, default: false },
     isCompleted: { type: Boolean, default: false },
     createdAt: { type: Date, default: Date.now },
   },

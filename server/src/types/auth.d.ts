@@ -19,6 +19,7 @@ export interface IUser extends Document {
   password: string;
   isVerified: boolean;
   isCompleted: boolean;
+  imagesUploaded: boolean;
   createdAt: mongoose.Schema.Types.Date;
   __v: number;
 }
