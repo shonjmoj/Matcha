@@ -11,11 +11,13 @@ import {
 } from "./controllers/confirmEmailController";
 import { profileSetup } from "./controllers/profileSetup";
 import { checkAuth } from "./middleware/auth";
+import uploadPictures from "./controllers/uploadPictures";
 const PORT = process.env.PORT || 3003;
 const app = express();
 dotenv.config();
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cookies());
 const connect = mongoose.connect(process.env.URI);
 app.post("/api/register", register);
@@ -23,7 +25,8 @@ app.post("/api/login", login);
 app.get("/confirmation/:email/:token", confirmEmail);
 app.post("/api/resendconfirmation", resendConfirmation);
 app.post("/api/profilesetup", profileSetup);
-app.post("/api/uploadpictures", checkAuth, (req, res) => res.send("testing"));
+app.post("/api/uploadpictures", checkAuth, uploadPictures);
+
 app.listen(PORT, () => {
   console.log(`listening to port ${PORT}`);
 });
