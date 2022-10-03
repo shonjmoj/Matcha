@@ -22,8 +22,7 @@ export default function ProfilePhotos() {
       },
       body: JSON.stringify(images),
     });
-    const data = await response.json();
-    console.log(data);
+    console.log(response.status);
   };
 
   return (

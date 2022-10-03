@@ -7,7 +7,7 @@ import { profile_model } from "../models/profile";
 const uploadPictures = async (req: Request, res: Response) => {
   const { pictures } = req.body;
   if (pictures.length < 2)
-    return res.json("you should at least upload a picture");
+    return res.status(401).json("you should at least upload a picture");
   const token = req.headers["authorization"].split(" ")[1];
   const decoded = jwt.decode(token);
   const { id } = decoded as JwtPayload;

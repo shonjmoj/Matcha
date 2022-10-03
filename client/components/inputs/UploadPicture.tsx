@@ -4,16 +4,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { addPicture } from "../../pages/redux/profilePictures";
 import { RootState } from "../../pages/redux/store";
 import supabase from "../../utils/supabase";
-
+import crypto from "crypto";
 const UploadPicture = () => {
   const dispatch = useDispatch();
 
   const handleUploadPicture = async (e: ChangeEvent<HTMLInputElement>) => {
     let file;
     if (e.target.files) file = e.target.files[0];
+
     const { data, error } = await supabase.storage
       .from("images")
-      .upload("public/" + file?.name, file as File);
+      .upload("public/" + crypto.randomBytes(4).toString("hex"), file as File);
     if (data) dispatch(addPicture(data.Key));
     else console.log(error);
   };
