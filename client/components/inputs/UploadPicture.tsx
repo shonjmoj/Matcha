@@ -1,8 +1,8 @@
 import { ChangeEvent } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
-import { addPicture } from "../../pages/redux/profilePictures";
-import { RootState } from "../../pages/redux/store";
+import { addPicture } from "../../redux/profilePictures";
+import { RootState } from "../../redux/store";
 import supabase from "../../utils/supabase";
 import crypto from "crypto";
 const UploadPicture = () => {

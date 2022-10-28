@@ -5,9 +5,9 @@ import { AiOutlinePlus } from "react-icons/ai";
 import supabase from "../utils/supabase";
 import { useSelector } from "react-redux";
 import UploadPicture from "../components/inputs/UploadPicture";
-import { RootState } from "./redux/store";
+import { RootState } from "../redux/store";
 import { useCookies } from "react-cookie";
-
+import Tilt from "react-parallax-tilt";
 export default function ProfilePhotos() {
   const pictures = useSelector((state: RootState) => state.profilePictures);
   const [cookies, setCookie, removeCookie] = useCookies(["x-access-token"]);
@@ -36,10 +36,18 @@ export default function ProfilePhotos() {
         encType="multipart/form-data"
         onSubmit={handleSubmit}
       >
-        <UploadPicture />
-        <UploadPicture />
-        <UploadPicture />
-        <UploadPicture />
+        <Tilt>
+          <UploadPicture />
+        </Tilt>
+        <Tilt>
+          <UploadPicture />
+        </Tilt>
+        <Tilt>
+          <UploadPicture />
+        </Tilt>
+        <Tilt>
+          <UploadPicture />
+        </Tilt>
         <motion.button
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}

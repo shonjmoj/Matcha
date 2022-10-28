@@ -6,7 +6,7 @@ import { ProfileData } from "../types/types";
 import Joi from "joi";
 import { interests } from "../components/utils/interests";
 import { useSelector } from "react-redux";
-import { RootState } from "./redux/store";
+import { RootState } from "../redux/store";
 import InterestBtn from "../components/InterestBtn";
 import Modal from "../components/Modal";
 
@@ -130,7 +130,7 @@ export default function Profilecompletion() {
                 </option>
               </select>
             </label>
-            <div className="flex flex-col font-semibold col-span-2">
+            <div className="flex flex-col col-span-2 font-semibold">
               Interests
               <ul className="overflow-y-scroll scrollbar text-xs lg:text-sm font-light border-[1px] max-w-md h-24 md:h-32 items-start justify-start flex flex-wrap gap-2 p-2 lg:p-3">
                 {interests.map((interest) => (

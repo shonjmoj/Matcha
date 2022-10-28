@@ -5,8 +5,8 @@ import Joi from "joi";
 import { RegistrationData } from "../types/types";
 import Router from "next/router";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "./redux/store";
-import { setMessage } from "./redux/RegistrationState";
+import { RootState } from "../redux/store";
+import { setMessage } from "../redux/RegistrationState";
 import HomeLayout from "../components/Layouts/HomeLayout";
 
 export default function Registration() {

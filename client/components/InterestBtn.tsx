@@ -3,8 +3,8 @@ import React, { MouseEventHandler, useState } from "react";
 import { BtnProps } from "../types/types";
 import { interests } from "../components/utils/interests";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../pages/redux/store";
-import { setInterests, unsetInterests } from "../pages/redux/UserInterests";
+import { RootState } from "../redux/store";
+import { setInterests, unsetInterests } from "../redux/UserInterests";
 
 const InterestBtn = ({ title }: { title: string }) => {
   const [disabled, setDisabled] = useState(false);
