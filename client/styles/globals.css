@@ -1,25 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.Poppins {
-  font-family: "Poppins", sans-serif;
-}
-
-@layer utilities {
-    .scrollbar::-webkit-scrollbar {
-        width : 4px;
-    }
-    .scrollbar::-webkit-scrollbar-track {
-        border-radius : 100vh;
-    }
-    .scrollbar::-webkit-scrollbar-thumb {
-        background : #FFFFFF;
-        border-radius: 100vh;
-    }
-}
 
 * {
-  @apply Poppins text-white;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
