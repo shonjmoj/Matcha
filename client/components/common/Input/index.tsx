@@ -17,7 +17,7 @@ export default function index({
   error,
 }: InputProps) {
   return (
-    <div className='flex flex-col gap-1 text-sm md:text-base'>
+    <div className='flex flex-col gap-1 text-sm md:text-base w-[80%] md:w-[30%] lg:w-[20%]'>
       <label htmlFor='name' className='ml-1'>
         {label}
       </label>
@@ -31,7 +31,7 @@ export default function index({
             ? 'border-2 border-red-600'
             : 'border-border shadow-border/20 focus:shadow-border'
         } rounded-md p-2 md:px-3 shadow-sm 
-              outline-none transition-all`}
+              outline-none transition-all w-full`}
       />
       <span
         className={`${
