@@ -14,6 +14,13 @@
     font-family: 'Comic Neue', cursive;
 }
 
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 html {
     font-size: 100%;
 }
