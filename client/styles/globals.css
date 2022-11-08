@@ -37,3 +37,34 @@ body,
     height: 100%;
     min-height: 100vh;
 }
+
+.css-1s2u09g-control {
+    @apply !bg-transparent !border-border !outline-none !shadow-sm !shadow-border
+}
+
+.css-1pahdxg-control {
+    @apply !bg-transparent !border-border !shadow-sm !shadow-border
+}
+
+.css-26l3qy-menu {
+    @apply !rounded-md
+}
+
+.css-4ljt47-MenuList {
+    @apply bg-[#F3D0E0] !p-0 !m-0 border-[0.5px] border-border rounded-md text-border
+}
+
+.css-4ljt47-MenuList > * {
+    @apply !bg-transparent border-b border-border 
+}
+
+.css-9gakcf-option {
+    @apply !bg-border text-white
+}
+
+.css-1okebmr-indicatorSeparator {
+    @apply !hidden
+}
+.css-tj5bde-Svg {
+    @apply !text-border
+}
