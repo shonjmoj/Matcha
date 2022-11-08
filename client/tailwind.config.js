@@ -7,7 +7,8 @@ module.exports = {
         colors : {
             primary : "#FF578E",
             secondary : "#B30051",
-            outlined : "#FFF3F8"
+            outlined : "#FFF3F8",
+            border : '#54424A'
         }
     },
   },
