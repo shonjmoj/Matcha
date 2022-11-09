@@ -32,12 +32,37 @@ export default function index({
 
   return (
     <div className='flex flex-col gap-1 text-sm md:text-base w-[80%] md:w-[30%] lg:w-[20%]'>
-      {type === 'select' ? (
+      {type === 'select' && (
         <>
           <label htmlFor='name' className='ml-1'>
             {label}
           </label>
           <Select placeholder={placeholder} options={parsedOptions} />
+        </>
+      )}
+      {type === 'textarea' ? (
+        <>
+          <label htmlFor='name' className='ml-1'>
+            {label}
+          </label>
+          <textarea
+            value={value}
+            name='email'
+            placeholder={placeholder}
+            className={`bg-transparent border ${
+              error
+                ? 'border-2 border-red-600'
+                : 'border-border shadow-border/20 focus:shadow-border'
+            } rounded-md p-2 md:px-3 shadow-sm 
+              outline-none transition-all w-full`}
+          />
+          <span
+            className={`${
+              error ? 'text-red-600 text-sm ml-1' : 'hidden'
+            } flex items-start gap-1`}>
+            <IoWarningOutline />
+            {error}
+          </span>
         </>
       ) : (
         <>
@@ -54,7 +79,7 @@ export default function index({
                 ? 'border-2 border-red-600'
                 : 'border-border shadow-border/20 focus:shadow-border'
             } rounded-md p-2 md:px-3 shadow-sm 
-              outline-none transition-all w-full placeholder:text-gray-600`}
+              outline-none transition-all w-full`}
           />
           <span
             className={`${

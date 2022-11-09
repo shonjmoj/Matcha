@@ -39,11 +39,11 @@ body,
 }
 
 .css-1s2u09g-control {
-    @apply !bg-transparent !border-border !outline-none !shadow-sm !shadow-border
+    @apply !bg-transparent !border-border !outline-none !shadow-sm !shadow-border/20 !p-1
 }
 
 .css-1pahdxg-control {
-    @apply !bg-transparent !border-border !shadow-sm !shadow-border
+    @apply !bg-transparent !border-border !shadow-sm !shadow-border !p-1
 }
 
 .css-26l3qy-menu {
